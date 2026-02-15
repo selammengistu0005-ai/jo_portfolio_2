@@ -299,3 +299,49 @@ body:hover .cinemascope-bar {
     color: #8a8a93;
 }
 
+/* =========================================
+   8. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Stack the Hero Section */
+    .hero-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 120px 5% 50px 5%;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .glitch-text {
+        font-size: 2.5rem; /* Shrink text so it doesn't break lines */
+    }
+
+    /* 2. Adjust the Viewfinder (Profile Photo) */
+    .viewfinder-container {
+        width: 280px; /* Smaller for mobile screens */
+        height: 380px;
+        margin: 0 auto;
+    }
+
+    /* 3. Fix the Project Frames */
+    .timeline-container {
+        flex-direction: column; /* Stack projects vertically */
+        align-items: center;
+        gap: 40px;
+    }
+
+    .video-container {
+        width: 95vw; /* Almost full width on mobile */
+    }
+
+    /* 4. Hide unnecessary elements to reduce clutter */
+    .cinemascope-bar {
+        height: 4vh; /* Thinner bars on mobile */
+    }
+}
+
+
