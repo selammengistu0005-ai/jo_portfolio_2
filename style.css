@@ -1,0 +1,100 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+:root {
+    /* Color Palette */
+    --bg-base: #0a0a0a; /* Rich cinematic black */
+    --text-main: #f4f4f5;
+    --text-mute: #8a8a93;
+    --accent-red: #ff3333; /* For the REC dot */
+    
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    
+    /* This variable will be controlled by your Skeuomorphic dial later! */
+    --theme-brightness: 1; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+    /* The brightness filter is applied here for the dial */
+    filter: brightness(var(--theme-brightness));
+    transition: filter 0.1s linear;
+}
+
+/* =========================================
+   2. THE MESH GRADIENT BACKGROUND
+   ========================================= */
+.mesh-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Keeps it behind everything */
+    /* Two soft, glowing orbs that sit in the dark background */
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(40, 40, 50, 0.4), transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(30, 40, 60, 0.3), transparent 50%);
+    animation: slowDrift 15s ease-in-out infinite alternate;
+}
+
+@keyframes slowDrift {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1) translate(20px, 15px); }
+}
+
+/* =========================================
+   3. THE FILM GRAIN OVERLAY
+   ========================================= */
+.grain-overlay {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 9999; /* On top of everything */
+    pointer-events: none; /* Crucial: lets you click *through* the grain */
+    /* A base64 noise texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    animation: grainJitter 0.5s steps(4) infinite;
+}
+
+@keyframes grainJitter {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-1%, 1%); }
+    50% { transform: translate(1%, -1%); }
+    75% { transform: translate(-1%, -1%); }
+    100% { transform: translate(1%, 1%); }
+}
+
+/* =========================================
+   4. CINEMASCOPE BARS (Letterboxing)
+   ========================================= */
+.cinemascope-bar {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 6vh; /* 6% of the screen height */
+    background-color: #000;
+    z-index: 9000;
+    transition: height 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.bar-top { top: 0; }
+.bar-bottom { bottom: 0; }
+
+/* Easter Egg: When hovering over the body, the bars slightly widen to feel more cinematic */
+body:hover .cinemascope-bar {
+    height: 8vh;
+}
