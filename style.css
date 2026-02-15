@@ -44,8 +44,8 @@ body {
     z-index: -2; /* Keeps it behind everything */
     /* Two soft, glowing orbs that sit in the dark background */
     background: 
-        radial-gradient(circle at 15% 50%, rgba(40, 40, 50, 0.4), transparent 50%),
-        radial-gradient(circle at 85% 30%, rgba(30, 40, 60, 0.3), transparent 50%);
+        radial-gradient(circle at 20% 40%, rgba(0, 85, 255, 0.15), transparent 55%), /* Deep Cinematic Blue */
+        radial-gradient(circle at 80% 60%, rgba(255, 190, 0, 0.12), transparent 55%); /* Premium Gold */
     animation: slowDrift 15s ease-in-out infinite alternate;
 }
 
@@ -250,3 +250,4 @@ body:hover .cinemascope-bar {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+
