@@ -1,38 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. THE SKEUOMORPHIC DIAL (Theme Brightness)
-    const dial = document.getElementById('themeDial');
-    const body = document.body;
-    let isDragging = false;
+const dial = document.getElementById('themeDial');
+const body = document.body;
+let isDragging = false;
 
-    // We rotate the knob and map that to the CSS --theme-brightness variable
-    const updateTheme = (angle) => {
-        // Map angle (0 to 180) to brightness (0.2 to 1.2)
-        const brightness = 0.2 + (angle / 180) * 1.0;
-        body.style.setProperty('--theme-brightness', brightness);
-        dial.style.transform = `rotate(${angle}deg)`;
-    };
+const updateTheme = (angle) => {
+    // We normalize the angle so 0 is at the top
+    const normalizedAngle = angle + 90; 
+    
+    // Map brightness: as you turn it, it gets brighter
+    // We use a simple 0 to 360 scale now for better UX
+    const brightness = 0.4 + (Math.abs(angle + 180) / 360) * 1.2;
+    
+    body.style.setProperty('--theme-brightness', brightness);
+    dial.style.transform = `rotate(${normalizedAngle}deg)`;
+};
 
-    dial.addEventListener('mousedown', () => isDragging = true);
-    window.addEventListener('mouseup', () => isDragging = false);
+dial.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    e.preventDefault(); // Prevents text selection while dragging
+});
 
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        
-        // Calculate angle based on mouse position relative to dial center
-        const rect = dial.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const radians = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-        let degrees = radians * (180 / Math.PI);
-        
-        // Constrain to a semi-circle (0 to 180) for a "Volume Knob" feel
-        if (degrees < 0) degrees = 0;
-        if (degrees > 180) degrees = 180;
-        
-        updateTheme(degrees);
-    });
+window.addEventListener('mouseup', () => isDragging = false);
+
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    const rect = dial.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // The Math.atan2 is perfect, we just need to let it breathe!
+    const radians = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+    let degrees = radians * (180 / Math.PI);
+    
+    // Now the dial will follow your mouse 1:1
+    updateTheme(degrees);
+});
 
     // 2. MAGNETIC BUTTON EFFECT
     const magBtn = document.querySelector('.magnetic-btn');
@@ -58,5 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bars[0].style.height = "6vh";
         bars[1].style.height = "6vh";
     }, 500);
+
 
 });
