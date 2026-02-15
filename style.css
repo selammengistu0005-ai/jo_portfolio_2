@@ -227,4 +227,72 @@ body:hover .cinemascope-bar {
     50% { opacity: 0; }
 }
 
+.project-gallery {
+    padding: 100px 5%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.05));
+}
 
+.section-title {
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: #ffbe00; /* Gold */
+    margin-bottom: 40px;
+    border-left: 3px solid #ffbe00;
+    padding-left: 15px;
+}
+
+.timeline-container {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto; /* Allows scrolling if you have many projects */
+    padding-bottom: 30px;
+}
+
+.project-card {
+    min-width: 300px;
+    flex: 0 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 190, 0, 0.1); /* Subtle Gold Border */
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: #0055ff; /* Glow Blue on hover */
+    transform: translateY(-10px);
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.frame-number {
+    font-size: 0.7rem;
+    padding: 10px;
+    color: #8a8a93;
+    font-family: monospace;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    font-size: 0.8rem;
+    color: #8a8a93;
+}
