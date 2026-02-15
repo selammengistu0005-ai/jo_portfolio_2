@@ -55,30 +55,6 @@ body {
 }
 
 /* =========================================
-   3. THE FILM GRAIN OVERLAY
-   ========================================= */
-.grain-overlay {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 9999; /* On top of everything */
-    pointer-events: none; /* Crucial: lets you click *through* the grain */
-    /* A base64 noise texture */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    animation: grainJitter 0.5s steps(4) infinite;
-}
-
-@keyframes grainJitter {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-1%, 1%); }
-    50% { transform: translate(1%, -1%); }
-    75% { transform: translate(-1%, -1%); }
-    100% { transform: translate(1%, 1%); }
-}
-
-/* =========================================
    4. CINEMASCOPE BARS (Letterboxing)
    ========================================= */
 .cinemascope-bar {
@@ -250,4 +226,5 @@ body:hover .cinemascope-bar {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+
 
