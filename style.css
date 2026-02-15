@@ -105,28 +105,30 @@ body:hover .cinemascope-bar {
     gap: 15px;
 }
 
-/* Make the dial physical so JS can grab it */
-.skeuomorphic-dial {
-    width: 40px;
-    height: 40px;
+/* Change .skeuomorphic-dial to #themeDial */
+#themeDial {
+    width: 44px; /* Increased size slightly for better 'grip' */
+    height: 44px;
     border-radius: 50%;
-    background: #222;
+    background: #1a1a1a; /* Darker, more metallic */
     border: 2px solid #444;
     position: relative;
-    cursor: pointer;
+    cursor: grab;
+    display: flex; /* Added to ensure the indicator stays centered */
+    justify-content: center;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.05), 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 10000; /* Ensure it stays above the glass nav */
 }
 
+/* Ensure the indicator is visible */
 .dial-indicator {
-    width: 4px;
-    height: 15px;
-    background: var(--text-main);
+    width: 3px;
+    height: 12px;
+    background: #ffbe00; /* Made it GOLD to match your new theme! */
     position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 4px;
     border-radius: 2px;
 }
-
 /* =========================================
    6. HERO SECTION LAYOUT
    ========================================= */
@@ -296,3 +298,4 @@ body:hover .cinemascope-bar {
     font-size: 0.8rem;
     color: #8a8a93;
 }
+
