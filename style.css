@@ -237,11 +237,10 @@ body:hover .cinemascope-bar {
 .profile-cutout {
     position: relative;
     width: auto;
-    height: 105%; /* Pops slightly out of the bottom */
-    z-index: 2; /* Foreground */
-    filter: grayscale(20%) contrast(1.2) brightness(1.1);
-    /* This makes the black parts of your JPG invisible so the ring shows through */
-    mix-blend-mode: screen; 
+    height: 105%; /* Keeps the "pop" out of the bottom */
+    z-index: 2; /* Still stays in front of the ring */
+    filter: contrast(1.1) brightness(1.1) drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    /* mix-blend-mode removed because PNG is natively transparent! */
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
