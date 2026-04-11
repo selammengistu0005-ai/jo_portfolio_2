@@ -204,7 +204,7 @@ body:hover .cinemascope-bar {
     display: flex;
     justify-content: center;
     align-items: flex-end; 
-    background: #000; /* Ensuring the base is pitch black */
+    background: transparent; /* Ensuring the base is pitch black */
 }
 
 .viewfinder-void {
@@ -236,13 +236,14 @@ body:hover .cinemascope-bar {
 
 .profile-cutout {
     position: relative;
-    width: auto;
-    height: 105%; /* Keeps the "pop" out of the bottom */
-    z-index: 2; /* Still stays in front of the ring */
+    width: 100%;  /* Ensures it fills the width */
+    height: 105%; /* Keeps that "out of bounds" height */
+    object-fit: contain; /* Ensures the PNG doesn't stretch weirdly */
+    z-index: 2;
     filter: contrast(1.1) brightness(1.1) drop-shadow(0 10px 30px rgba(0,0,0,0.5));
-    /* mix-blend-mode removed because PNG is natively transparent! */
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
 
 /* 3D Hover Effect */
 .viewfinder-container:hover .profile-cutout {
